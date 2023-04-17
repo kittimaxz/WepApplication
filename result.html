@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bone Age Predictor</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+	body {
+   margin:50px;
+   height:80vh;
+   background: #1283da;
+ }
+</style>
+<head>
+	<title>Grad-CAM Visualization</title>
+	<style>
+		#image {
+			max-width: 500px;
+		}
+		#gradcam {
+			position: relative;
+			display: inline-block;
+		}
+		#heatmap {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0.5;
+		}
+	</style>
+</head>
+<body>
+	<h1>Grad-CAM Visualization</h1>
+	<img id="file-ip-1" src="src" alt="Image">
+	<div id="gradcam">
+		<img src="src" alt="Image">
+		<img id="heatmap" src="" alt="Heatmap">
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.15.1/dist/tf.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.0.4/dist/mobilenet.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter@3.15.1/dist/tfjs-converter.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-explain@3.0.0/dist/tfjs-explain.min.js"></script>
+	<script>
+		// Load image and model
+		const img = document.getElementById('image');
+		const model = await tf.loadLayersModel('model3_080423.pth');
+
+		// Get image data
+		const imageData = tf.browser.fromPixels(img).resizeNearestNeighbor([224, 224]).expandDims();
+
+		// Generate Grad-CAM heatmap
+		const explainer = tfvis.visor().surface({ name: 'Grad-CAM' });
+		const gradcam = tfvis.gradcam(explainer, model, model.getLayer('conv2d_1'), { normalize: true });
+		gradcam.generate(imageData);
+
+		// Display heatmap
+		const heatmapImage = document.getElementById('heatmap');
+		const canvas = explainer.querySelector('canvas');
+		heatmapImage.src = canvas.toDataURL();
+	</script>
+  <button class="my-button"><a href="BoneMaturityLab.html">Go Back</a></button>
+      <style>
+        .my-button {
+          margin: auto;
+          background-color: #ffff;
+          border: none;
+          color: rgb(0, 0, 0);
+          padding: 20px 35px;
+          text-align: center;
+          text-decoration: none;
+          display: block;
+          font-size: 30px;
+          cursor: pointer;
+        }
+		.center {
+    	height:100%;
+    	display:flex;
+    	align-items:center;
+    	justify-content:center;
+  
+  }
+      </style>
