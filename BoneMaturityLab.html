@@ -1,0 +1,154 @@
+<! DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+        <meta name="viewpoint" content="width=devicr-width,initial-scale=1.0">
+        <title>BoneMaturityLab</title>
+        <link rel="stylesheet" href="http://www.BoneMaturityLab.com.html/style.css">
+        <link rel = "stylesheet" href = "Upload.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.14.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.0.4"></script>
+        <script src="Text.js"></script>
+    </head>
+    <body>
+      <h1 id="h1">BoneMaturityLab</h1>
+    </body>
+    <style>
+   
+        body {
+       margin:0px;
+       height:100vh;
+       background: #1283da;
+     }
+     .center {
+       height:100%;
+       display:flex;
+       align-items:center;
+       justify-content:center;
+     
+     }
+     .form-input {
+       width:250px;
+       padding:15px;
+       background:#fff;
+       box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377),
+                   3px 3px 7px rgba(94, 104, 121, 0.377);
+     }
+     .form-input input {
+       display:none;
+     
+     }
+     .form-input label {
+       display:block;
+       width:60%;
+       height:45px;
+       margin-left: 20%;
+       line-height:50px;
+       text-align:center;
+       background:#1172c2;
+     
+       color:#fff;
+       font-size:15px;
+       font-family:"Open Sans",sans-serif;
+       text-transform:Uppercase;
+       font-weight:600;
+       border-radius:5px;
+       cursor:pointer;
+     }
+     
+     .form-input img {
+       width:100%;
+       display:none;
+     
+       margin-bottom:30px;
+     }
+     
+        
+       </style>
+     
+     </head>
+     <body>
+      <div class="center">
+       <div class="form-input">
+         <div class="preview">
+           <img id="file-ip-1-preview">
+         </div>
+         <label for="file-ip-1">Upload Image</label>
+         <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+         
+       </div>
+     </div> 
+     <div id="output-container"></div>
+	   <script src="Text.js"></script>
+     <script type="text/javascript">
+       function showPreview(event){
+       if(event.target.files.length > 0){
+         var src = URL.createObjectURL(event.target.files[0]);
+         var preview = document.getElementById("file-ip-1-preview");
+         preview.src = src;
+         preview.style.display = "block";
+       }
+     }
+     </script>
+     <script src="Text.js">
+		  async function predict() {
+      // Load the pre-trained model
+      const model = await tf.loadLayersModel('model.json');
+  
+      // Get the uploaded image file
+      const fileInput = document.getElementById('image-upload');
+      const file = fileInput.files[0];
+  
+      // Preprocess the image
+      const image = await preprocessImage(file);
+  
+      // Make the prediction
+      const prediction = await model.predict(image).data();
+      const boneAge = prediction[0];
+  
+      // Display the predicted bone age
+      const predictionOutput = document.getElementById('prediction');
+      predictionOutput.innerHTML = `Predicted bone age: ${boneAge.toFixed(1)} months`;
+      }
+
+      async function preprocessImage(file) {
+      // Preprocess the image
+      // ... 
+      return preprocessedImage;
+      }
+
+    const predictButton = document.getElementById('Predict');
+    predictButton.addEventListener('click', Predict);
+	  </script>
+    </body>
+    <body>
+      <div id="div">
+        <p id="p">Please Select Your Gender</p>
+        <form action="/" method="POST">
+          <label for="gender">Gender:</label>
+          <select name="gender" id="gender">
+            <option value="0">Female</option>
+            <option value="1">Male</option>
+          </select>
+      </div>
+    </body>
+    <body>
+      <button class="my-button"><a href="result.html">Predict</a></button>
+      <style>
+        .my-button {
+          margin: auto;
+          background-color: #ffff;
+          border: none;
+          color: rgb(0, 0, 0);
+          padding: 15px 28px;
+          text-align: center;
+          text-decoration: none;
+          display: block;
+          font-size: 16px;
+          cursor: pointer;
+        }
+      </style>
+    </body>
+</html>
