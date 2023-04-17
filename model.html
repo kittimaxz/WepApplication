@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bone Age Prediction</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.12.0/dist/tf.min.js"></script>
+  </head>
+  <body>
+    <h1>Bone Age Prediction</h1>
+    <form>
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age">
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select>
+      <button type="button" onclick="predict()">Predict</button>
+    </form>
+    <p id="output"></p>
+    <script>
+      async function predict() {
+        // Load the model
+        const model = await tf.loadGraphModel('model/model.json');
+
+        // Prepare the input data
+        const age = parseFloat(document.getElementById('age').value);
+        const gender = document.getElementById('gender').value;
+        const input = tf.tensor2d([[age, gender === 'M' ? 1 : 0, gender === 'F' ? 1 : 0]]);
+
+        // Make predictions
+        const output = model.predict(input).dataSync();
+
+        // Display the output
+        document.getElementById('output').innerText = `Predicted bone age: ${output[0]} months`;
+      }
+    </script>
+  </body>
+</html>
