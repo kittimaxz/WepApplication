@@ -1,0 +1,58 @@
+<! DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Bone Age Predictor</title>
+	<meta name="viewpoint" content="width=devicr-width,initial-scale=1.0">
+	<link rel="stylesheet" type="css/js" href="{{url_for('static', filename='style.css')}}">
+</head>
+<style>
+	body {
+   margin:50px;
+   height:80vh;
+   background: #1283da;
+ }
+</style>
+<body>
+	<div class="project-img">
+	{% if filename %}
+	<img src="{{url_for('showimage', filename=filename )}}" width="256" heigth = "256" alt="img">
+	{% endif %}
+</div>
+</body>
+<bodey>
+	<h1>Result</h1>
+		<h3>Input Image: {{filename}} </h3>
+		<h3>Gender: {{gender}} </h3>
+		<h3>Bone Age Predict: {{boneage}} Month </h3>
+</body>
+	<body>
+    	<button class="my-button"><a href="/">Go Back</a></button>
+      <style>
+        .my-button {
+          margin: auto;
+          background-color: #ffff;
+          border: none;
+          color: rgb(0, 0, 0);
+          padding: 20px 35px;
+          text-align: center;
+          display: block;
+          font-size: 25px;
+		  line-height:-50px;
+          cursor: pointer;
+		  bottom: -20;
+        }
+		.center {
+		top: 100%;
+    	height:100%;
+		padding:50px;
+		line-height:-150px;
+		bottom : 0;
+    	display:flex;
+    	align-items:center;
+    	justify-content:center;
+		position: relative;
+     }
+      </style>
+	  </body>
+</html>

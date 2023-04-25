@@ -1,0 +1,12 @@
+<! DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+        <meta name="viewpoint" content="width=devicr-width,initial-scale=1.0">
+        <title>Log in screen</title>
+        <link rel="stylesheet"
+    href="Style.css">
+    </head>
+    <body>
+        <h1>BoneMaturityLab</h1>

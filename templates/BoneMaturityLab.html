@@ -1,0 +1,156 @@
+<! DOCTYPE html>
+<html lang = 'en'>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+        <meta name="viewpoint" content="width=devicr-width,initial-scale=1.0">
+        <title>BoneMaturityLab</title>
+        <link rel="stylesheet" href="http://www.BoneMaturityLab.com.html/style.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.14.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.0.4"></script>
+    </head>
+    <body>
+      <h1>BoneMaturityLab</h1>
+    </body>
+    <style>
+   
+        body {
+       margin:50px;
+       height:100vh;
+       background: #1283da;
+     }
+     .center {
+       height:100%;
+       display:flex;
+       align-items:center;
+       justify-content:center;
+     
+     }
+     .form-input {
+       width:250px;
+       padding:20px;
+       top: 0%;
+       background:#fff;
+       box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377),
+                   3px 3px 7px rgba(94, 104, 121, 0.377);
+     }
+     .form-input input {
+       display:none;
+     
+     }
+     .form-input label {
+       display:block;
+       width:60%;
+       height:45px;
+       margin-left: 20%;
+       line-height:40px;
+       text-align:center;
+       background:#1172c2;
+     
+       color:#fff;
+       font-size:15px;
+       font-family:"Open Sans",sans-serif;
+       text-transform:Uppercase;
+       font-weight:600;
+       border-radius:5px;
+       cursor:pointer;
+     }
+     
+     .form-input img {
+       width:100%;
+       display:none;
+     
+       margin-bottom:10px;
+     }
+       </style>
+     </head>
+     <body>
+      <div class="center">
+       <div class="form-input">
+         <div class="preview">
+         <img id="file-ip-1-preview">
+         </div>
+         <form method="POST"enctype="multipart/form-data" action="/">
+         <label for="file-ip-1">Upload Image</label>
+         <input type="file" name='file' id="file-ip-1" accept="image/*" onchange="showPreview(event);">   
+         </form>
+       </div>
+     </div> 
+     <div id="output-container"></div>
+     <script type="text/javascript">
+       function showPreview(event){
+       if(event.target.files.length > 0){
+         var src = URL.createObjectURL(event.target.files[0]);
+         var preview = document.getElementById("file-ip-1-preview");
+         preview.src = src;
+         preview.style.display = "block";
+       }
+     }
+     </script>
+    </body>
+    <body>
+      <div id="div">
+        <p id="p">Please Select Gender</p>
+          <label for="gender">Gender:</label>
+          <select name="gender" id="gender">
+            <option>Female</option>
+            <option>Male</option>
+          </select>
+          <style>
+            .center {
+              height:100%;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+            
+            }
+            #p{
+              font-family: 'Open Sans', sans-serif;
+              font-size:15px;
+              cursor:default;
+              text-align: center;
+            }
+            #div{
+              position: relative;
+              margin:auto;
+              width:300px;
+              height:100px;
+              margin-top:-100px;
+              text-align:center;
+            }
+            #select{
+              border:none;
+              outline:none;
+              width:100px;
+              height:30px;
+              font-family: 'Open Sans', sans-serif;
+              font-size:30px;
+              color:#1d1e22;
+            
+            }
+            .options{
+              background-color:#1d1e22;
+              color:white;
+            }
+          </style>
+      </div>
+    </body>
+    <body>
+      <button class="my-button"><a href="/result">Predict</a></button>
+      <style>
+        .my-button {
+          margin: auto;
+          background-color: #ffff;
+          border: none;
+          color: rgb(0, 0, 0);
+          padding: 20px 35px;
+          text-align: center;
+          text-decoration: none;
+          display: block;
+          font-size: 25px;
+          cursor: pointer;
+        }
+      </style>
+    </body>
+</html>
